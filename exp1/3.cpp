@@ -42,15 +42,6 @@ int main() {
         heights.push_back(stoi(item));
     }
 
-    cout << "测试数据: ";
-    for (size_t j = 0; j < min(static_cast<size_t>(10), heights.size()); ++j) {
-        cout << heights[j] << " ";
-    }
-    if (heights.size() > 10) {
-        cout << "...";
-    }
-    cout << " (长度: " << heights.size() << ")" << endl;
-
     cout << "最大矩形面积: " << largestRectangleArea(heights) << endl;
 
     return 0;
