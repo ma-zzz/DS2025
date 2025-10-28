@@ -4,7 +4,7 @@
 #include <ctime>
 #include <algorithm>
 #include <cmath>
-#include <functional>
+#include <iomanip> // 用于设置输出精度
 
 // 定义复数类
 class Complex {
@@ -119,6 +119,10 @@ int main() {
     // 随机生成一个包含20个复数的无序向量
     std::vector<Complex> vec = generateRandomComplexVector(20);
 
+    // 在随机生成的向量后面追加一个相同的向量
+    std::vector<Complex> vecCopy = vec;
+    vec.insert(vec.end(), vecCopy.begin(), vecCopy.end());
+
     std::cout << "随机生成的向量: ";
     for (const auto& elem : vec) {
         std::cout << elem << " ";
@@ -167,18 +171,18 @@ int main() {
     std::cout << std::endl;
 
     // 测试排序效率
-    std::vector<Complex> vecCopy = vec;
+    vecCopy = vec;
 
     clock_t start = clock(); // 记录开始时间
     bubbleSort(vecCopy); // 冒泡排序
     clock_t end = clock(); // 记录结束时间
-    std::cout << "冒泡排序时间: " << (double)(end - start) / CLOCKS_PER_SEC << " 秒" << std::endl;
+    std::cout << "冒泡排序时间: " << (end - start) / CLOCKS_PER_SEC << " 秒" << std::endl;
 
     vecCopy = vec;
     start = clock(); // 记录开始时间
     mergeSort(vecCopy); // 归并排序
     end = clock(); // 记录结束时间
-    std::cout << "归并排序时间: " << (double)(end - start) / CLOCKS_PER_SEC << " 秒" << std::endl;
+    std::cout << "归并排序时间: " << (end - start) / CLOCKS_PER_SEC << " 秒" << std::endl;
 
     // 测试区间查找
     double m1 = 2.0, m2 = 5.0;
@@ -191,4 +195,3 @@ int main() {
 
     return 0;
 }
-
