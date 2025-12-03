@@ -121,25 +121,12 @@ public:
 };
 
 int main() {
-    std::string speech;       // 存储从文件读取的文本
-    // 直接写入你的绝对路径（注意：Windows系统中路径分隔符用双反斜杠 \\，或单斜杠 /）
-    std::string filePath = "D:\\code\\数据结构实验\\实验2\\exp2\\exp2\\x64\\Debug\\i have a dream.txt";
-    std::ifstream file;       // 文件输入流
-
-    // 打开文件并检查是否成功
-    file.open(filePath, std::ios::in); // ios::in 表示只读模式
-    if (!file.is_open(
-
-        // 读取文件全部内容到 speech 中（逐行读取，保留完整文本）
-        std::string line;
-    while (getline(file, line)) {
-        speech += line + " "; // 每行末尾加空格，避免单词拼接
+    std::string filename = "I have a dream.txt";  // 假设你保存了文章的原文为此文件
+    std::ifstream infile(filename);
+    if (!infile.is_open()) {
+        std::cerr << "Error: Cannot open the file " << filename << std::endl;
+        return 1;  // 退出程序
     }
-    file.close(); // 读取完成后关闭文件，释放资源)) {
-    cerr << "错误：无法打开文件！请检查路径是否正确。" << endl;
-    system("pause");
-    return 1; // 异常退出
-}
 
     HuffmanCoding huffman(filename);  // 根据文件创建HuffmanCoding对象
     huffman.encode();  // 执行哈夫曼编码
